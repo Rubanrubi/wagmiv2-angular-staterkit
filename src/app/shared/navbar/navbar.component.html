@@ -1,0 +1,86 @@
+<nav class="py-4 bg-white dark:bg-gray-800 antialiased">
+  <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    <div
+      class="flex flex-wrap items-center justify-between gap-4 lg:flex-nowrap"
+    >
+      <div class="lg:order-1 shrink-0">
+        <a href="#" title="" class="">
+          <img
+            class="block w-auto h-12 dark:hidden"
+            src="/logos/bx-logo.png"
+            alt="Company Logo"
+          />
+          <img
+            class="hidden w-auto h-12 dark:block"
+            src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/logo-full-dark.svg"
+            alt=""
+          />
+        </a>
+      </div>
+
+      <div class="flex items-center justify-end lg:space-x-2 lg:order-3">
+        <!-- If wallet is connected -->
+        @if(isConnected) {
+        <div>
+          <div class="flex items-center space-x-2">
+            <button (click)="onNetworkButtonClick()"
+              class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              {{ networkName }}
+            </button>
+            <button
+              class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              {{ walletAddress | walletAddressFormat }}
+            </button>
+            <button
+              (click)="disconnectMetamask()"
+              class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+            >
+              Disconnect
+            </button>
+          </div>
+        </div>
+        }
+        <!-- If wallet is not connected -->
+        @if(!isConnected) {
+        <div>
+          <button
+            type="button"
+            (click)="openModal()"
+            class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          >
+            Connect Wallet
+          </button>
+        </div>
+        }
+      </div>
+
+      <div class="md:flex md:items-center md:justify-center lg:order-2">
+        <div
+          class="sm:flex relative items-center justify-center sm:gap-4 sm:p-2 sm:bg-gray-100 rounded-lg sm:dark:bg-gray-700"
+        >
+          <ul class="flex items-center space-x-4">
+            <li>
+              <a
+                href="#"
+                class="items-center hidden gap-2 px-2 py-1 text-sm hover:text-primary-700 dark:hover:text-primary-500 font-medium text-gray-900 rounded-lg sm:inline-flex dark:text-white bg-primary-100 text-primary-700 dark:bg-primary-700 dark:text-white"
+              >
+                Swap
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="items-center hidden gap-2 px-2 py-1 text-sm hover:text-primary-700 dark:hover:text-primary-500 font-medium text-gray-900 rounded-lg sm:inline-flex dark:text-white"
+              >
+                Pool
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<app-connect-wallet-modal></app-connect-wallet-modal>
